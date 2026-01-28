@@ -4,26 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NPRU - Grade Report</title>
+    
     <style>
-        /* รีเซ็ตค่าพื้นฐาน */
+        /* --- CSS ส่วนของการตกแต่ง --- */
+
+        /* รีเซ็ตค่า Margin/Padding พื้นฐานเพื่อให้แสดงผลเหมือนกันทุก Browser */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
+        /* ตั้งค่าพื้นหลังเว็บให้ไล่เฉดสี และตั้งค่าตัวอักษร */
         body {
-            background: linear-gradient(135deg, #6a5acd, #a29bfe); /* พื้นหลังไล่เฉดสีม่วง */
+            background: linear-gradient(135deg, #6a5acd, #a29bfe); /* สีม่วงไล่เฉด */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
+            min-height: 100vh; /* ให้หน้าเว็บสูงอย่างน้อยเท่ากับหน้าจอ */
         }
 
-        /* --- Header: แถบสีฟ้าเข้มขยายเต็มจอ --- */
+        /* แถบหัวข้อด้านบนสุด (Header) */
         .top-header {
             width: 100%;
-            background-color: #1a5276; /* สีน้ำเงินเข้มตามรูป */
+            background-color: #1a5276; /* สีน้ำเงินเข้ม */
             color: white;
             padding: 15px 0;
             text-align: center;
@@ -35,18 +39,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 10px; /* ระยะห่างระหว่างไอคอนกับข้อความ */
         }
 
-        /* --- Container กลาง: คุมความกว้างเนื้อหา 900px --- */
+        /* กล่องเนื้อหาหลัก (Container) คุมความกว้างไว้ตรงกลาง */
         .main-content {
             width: 95%;
             max-width: 900px;
             margin: 20px auto;
-            flex: 1; /* ดัน Footer ลงล่างสุด */
+            flex: 1; /* ช่วยดัน Footer ให้ไปอยู่ล่างสุดเสมอ */
         }
 
-        /* Nav Bar */
+        /* แถบเมนูนำทาง (Nav Bar) */
         .nav-bar {
             background: white;
             padding: 15px;
@@ -57,6 +61,7 @@
             margin-bottom: 20px;
         }
 
+        /* ปุ่มในเมนู */
         .nav-item {
             padding: 8px 20px;
             border: none;
@@ -64,13 +69,13 @@
             background-color: #d6eaf8;
             font-size: 16px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.3s; /* เวลาที่ใช้ในการเปลี่ยนสีหรือขนาด */
         }
         
         .nav-item a { text-decoration: none; color: #1a5276; font-weight: bold; }
-        .nav-item:hover { background-color: #ff8c61; transform: scale(1.05); }
+        .nav-item:hover { background-color: #ff8c61; transform: scale(1.05); } /* เอฟเฟกต์เมื่อเมาส์ชี้ */
 
-        /* Profile Card */
+        /* ส่วนข้อมูลส่วนตัว (Profile) */
         .profile-card {
             background: white;
             padding: 30px;
@@ -82,8 +87,9 @@
             margin-bottom: 20px;
         }
 
+        /* กล่องสีส้มที่ใส่ข้อความ */
         .info-box {
-            background-color: #ff8c61; /* สีส้มตามรูป */
+            background-color: #ff8c61;
             color: white;
             padding: 25px;
             border-radius: 20px;
@@ -94,8 +100,14 @@
 
         .info-box:hover { transform: scale(1.03); }
 
-        .info-box h2 { font-size: 32px; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 10px; }
+        .info-box h2 { 
+            font-size: 32px; 
+            margin-bottom: 15px; 
+            border-bottom: 1px solid rgba(255,255,255,0.3); 
+            padding-bottom: 10px; 
+        }
 
+        /* จัดการรายการข้อความ (ลิสต์) */
         .details { list-style: none; }
         .details li { 
             display: flex; 
@@ -105,26 +117,27 @@
         }
 
         .details strong { 
-            width: 130px; /* ทำให้หัวข้อตรงกัน */
+            width: 130px; /* กำหนดความกว้างหัวข้อให้ตรงกัน */
             font-weight: bold;
         }
 
         .details a { color: white; text-decoration: none; font-size: 14px; opacity: 0.9; }
 
+        /* รูปภาพโปรไฟล์ */
         .profile-img {
             width: 220px;
             height: 220px;
-            border-radius: 50%;
+            border-radius: 50%; /* ทำรูปเป็นวงกลม */
             border: 8px solid #d6eaf8;
-            object-fit: cover;
+            object-fit: cover; /* ป้องกันรูปเบี้ยว */
             transition: 0.3s;
         }
         .profile-img:hover { transform: scale(1.1); }
 
-        /* GPA Grid */
+        /* ระบบ Grid สำหรับแสดงเกรดรายเทอม */
         .gpa-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr); /* แบ่งเป็น 3 คอลัมน์เท่ากัน */
             gap: 15px;
             margin-bottom: 20px;
         }
@@ -137,12 +150,13 @@
             border: none;
             font-weight: bold;
             color: #1a5276;
+            text-align: center;
         }
-        .gpa-card span { color: #e74c3c; }
+        .gpa-card span { color: #e74c3c; } /* สีตัวเลขเกรด */
 
-        /* Cumulative GPA */
+        /* กล่องเกรดเฉลี่ยสะสม (GPAX) */
         .cumulative-box {
-            background: #c0392b;
+            background: #c0392b; /* สีแดง */
             color: white;
             padding: 20px;
             border-radius: 15px;
@@ -151,7 +165,7 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
-        /* --- Footer: แถบสีฟ้าเข้มขยายเต็มจอ --- */
+        /* แถบด้านล่างสุด (Footer) */
         .full-footer {
             width: 100%;
             background-color: #1a5276;
@@ -164,12 +178,12 @@
 
         .full-footer a { color: #5dade2; text-decoration: none; }
 
-        /* --- Responsive สำหรับมือถือ --- */
+        /* --- ปรับแต่งสำหรับหน้าจอมือถือ (Responsive) --- */
         @media (max-width: 768px) {
-            .profile-card { flex-direction: column; text-align: center; }
+            .profile-card { flex-direction: column; text-align: center; } /* เปลี่ยนจากแนวนอนเป็นแนวตั้ง */
             .details li { flex-direction: column; gap: 5px; }
             .details strong { width: auto; }
-            .gpa-grid { grid-template-columns: 1fr; }
+            .gpa-grid { grid-template-columns: 1fr; } /* เกรดเรียงต่อกันแถวเดียว */
             .top-header h1 { font-size: 28px; }
             .cumulative-box { font-size: 24px; }
         }
